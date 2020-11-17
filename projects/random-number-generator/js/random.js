@@ -1,12 +1,16 @@
-// Collect input from a user
-// Convert the input to a number
-userInput = +prompt("Give us a number")
-
-// Use Math.random() and the user's number to generate a random number
-
-const randomNumber = Math.floor(Math.random() * userInput) + 1;
 // Create a message displaying the random number
+// Convert the input to a number
+// Don't forget to create a conditional for if user provides a non-interger
+num1 = +prompt("Please provide your highest number")
+num2 = +prompt("Please provide your lowest number")
 
 
-document.write(`${randomNumber} is a random number between 1 and ${userInput}`)
+if (num1, num2) {
+    // Collect input from a user
+    // Use Math.random() and the user's number to generate a random number
+    const randomNumber = Math.floor(Math.random() * (num1 - num2 + 1)) + num2;
+    document.write(`${randomNumber} is a random number between ${num1} and ${num2}`)
+} else {
+    document.write("you need to provide a number")
+}
 
