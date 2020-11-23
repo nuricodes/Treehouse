@@ -1,44 +1,42 @@
-// 1: Select the element with the ID 'about'. 
-//    Store the element in the variable `about`.
-const about = document.getElementById('about');
-about.style.border = "2px solid firebrick";
+// 1: Set the text of the <h1> element
+const h1 = document.getElementsByTagName('h1')[0]
+h1.innerHTML = '<b>My Activities List</b>'
+// 2: Set the color of the <h1> to a different color
+h1.style.color = 'blue';
 
-// 2: Select all the <h2> elements in the document.
-//    Set the color of the <h2> elements to a different color.
-const h2 = document.getElementsByTagName('h2');
-for (let i = 0; i < h2.length; i++){
-h2[i].style.color = 'red';
+// 3: Set the content of the '.desc' paragraph
+// The content should include at least one HTML tag
+const descriptionP = document.querySelector('p.desc')
+descriptionP.innerHTML = 'A list of <i>fun</i> things I want to do today'
+// 4: Set the class of the <ul> to 'list'
+const ul = document.querySelector('ul');
+ul.className = 'list'
+
+// 5: Create a new list item and add it to the <ul>
+const newListItem = document.createElement('li');
+newListItem.innerHTML = '<input> Read a book';
+ul.appendChild(newListItem)
+
+// 6: Change all <input> elements from text fields to checkboxes
+const inputBoxes = document.querySelectorAll('input');
+for (let i = 0; i < inputBoxes.length; i++){
+  inputBoxes[i].type = 'checkbox';
 }
 
-
-// 3: Select all elements with the class '.card'. 
-//    Set their background color to the color of your choice.
-const card = document.getElementsByClassName('card');
-for (let i = 0; i < card.length; i++){
-card[i].style.backgroundColor = 'yellow';
-}
-
-// 4: Select only the first <ul> in the document.
-//    Assign it to a variable named `ul`.
-const ul = document.querySelector('ul')
-ul.style.border = "2px solid indigo";
-
-// 5: Select only the second element with the class '.container'.
-//    Assign it to a variable named `container`.
-//const container = document.getElementsByClassName('container');
-//for (let i = 0; i < container.length; i++){
-//container[1].style.backgroundColor = "royalblue";
-//}
-
-const container = document.getElementsByClassName('container')[1];
-container.style.backgroundColor = "royalblue";
-
-// 6: Select all <a> elements that have a 'title' attribute. 
-//    Set their color value to the color of your choice.
+// 7: Create a <button> element, and set its text to 'Delete'
+// Add the <button> inside the '.extra' <div>
+const deleteButton = document.createElement('button')
+deleteButton.textContent = 'Delete';
+// zero because there is only one div
+const extraDiv = document.querySelector('.extra');
+extraDiv.appendChild(deleteButton)
 
 
-const titleA = document.querySelectorAll('a[title]');
+// 8: Remove the '.extra' <div> element from the DOM when a user clicks the 'Delete' button
+const container = document.querySelector('div.container');
 
-for (let i = 0; i < titleA.length; i++) {
-titleA[i].style.color = 'green';
-}
+deleteButton.addEventListener('click', () => {
+                              container.removeChild(extraDiv);
+                              })
+
+                            

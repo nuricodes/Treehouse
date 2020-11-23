@@ -1,6 +1,6 @@
 const main = document.querySelector('main');
 const randomNumber = getRandomNumber(10);
-// let message;
+// let message; used var down below because I know this code will not be long
 
 
 function getRandomNumber(upper) {
