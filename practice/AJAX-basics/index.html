@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link href='//fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="css/main.css">
+  <title>AJAX with JavaScript</title>
+  <script>
+    // A Simple AJAX Example
+    // Step 1: Create an XMLHTTP Request Object
+    //tells browser to get ready to use AJAX
+    var xhr = new XMLHttpRequest();
+    
+    //Step 2: Create a callback function
+    //sets up a function that runs whenever theres a change in the request
+    // readystate holds contains a number 4 = done
+    xhr.onreadystatechange = () => {
+      //run a test for this state
+      if (xhr.readyState === 4) {
+        //if this condition is true store response in this id
+      document.getElementById('ajax').innerHTML = xhr.responseText;
+      }
+      };
+      //3. Open a request
+      //prepares browser for sending the request
+      // two pieces of information needed
+      //1. http method & 2. url where data will go
+      xhr.open('GET', 'sidebar.html');
+    //create the function we put in the button and put xhr.send() inside
+      const sendAJAX = () => {
+      xhr.send();
+        //clear button after
+        document.getElementById('load').style.display = 'none';
+      };
+    
+  </script>
+</head>
+<body>
+  <div class="grid-container centered">
+    <div class="grid-100">
+      <div class="contained">
+        <div class="grid-100">
+          <div class="heading">
+            <h1>Bring on the AJAX</h1>
+            <button id="load" onClick="sendAJAX()">Bring it!</button>
+          </div>
+          <div id="ajax">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
