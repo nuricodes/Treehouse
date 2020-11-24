@@ -1,3 +1,4 @@
+// Store Elements into Variables
 const toggleList = document.getElementById('toggleList');
 const listDiv = document.querySelector('.list');
 const descriptionInput = document.querySelector('input.description');
@@ -9,20 +10,41 @@ const addItemButton = document.querySelector('button.addItemButton');
 // const removeItemButton = document.querySelector('button.removeItemButton');
 
 
-
+// Move up & remove button
+// on the variable containing the ul add an event listener
 listUL.addEventListener('click', (event) => {
+  // if what is being clicked is a button
   if (event.target.tagName == 'BUTTON') {
-    // would be li since button is nested in li
-    let li = event.target.parentNode;
-    let ul = li.parentNode;
-    ul.removeChild(li);
-
+    // and if the the class name is remove
+    if (event.target.className == 'remove') {
+      // store what's clicked parent node in li
+      let li = event.target.parentNode;
+      // and li's parent node in ul
+      let ul = li.parentNode;
+      // now remove li child from its parent
+      ul.removeChild(li);
+    }
+    // if what's being clicked has a class of up
+    if (event.target.className == 'up') {
+      // store what's being clicked's parent in the li var
+      let li = event.target.parentNode;
+      // and the element sibling before li in this var
+      let prevLi = li.previousElementSibling;
+      // and li's parent in this var
+      let ul = li.parentNode;
+      // https://developer.mozilla.org/en-US/docs/Web/API/Node/insertBefore
+      // let insertedNode = parentNode.insertBefore(newNode, referenceNode)
+      if (prevLi) {
+        ul.insertBefore(li, prevLi)
+      }
+    }
   }
 })
 
 
 
-
+// toggleList button
+// to the toggleList button add the following event
 toggleList.addEventListener('click', () => {
   if (listDiv.style.display == 'none') {
     toggleList.textContent = 'Hide list'
