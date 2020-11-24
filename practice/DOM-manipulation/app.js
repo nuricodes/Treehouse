@@ -7,8 +7,29 @@ const descriptionButton = document.querySelector('button.description');
 const listUL = document.querySelector('ul');
 const addItemInput = document.querySelector('input.addItemInput');
 const addItemButton = document.querySelector('button.addItemButton');
-// const removeItemButton = document.querySelector('button.removeItemButton');
+const lis = listUL.children;
 
+
+const attachListItemButtons = (li) => {
+  let up = document.createElement('button');
+  up.className = 'up';
+  up.textContent = 'Move Up';
+  li.appendChild(up);
+
+  let down = document.createElement('button');
+  down.className = 'down';
+  down.textContent = 'Move Down';
+  li.appendChild(down);
+
+  let remove = document.createElement('button');
+  remove.className = 'remove';
+  remove.textContent = 'Remove';
+  li.appendChild(remove);
+}
+
+for (let i = 0; i < lis.length; i++) {
+  attachListItemButtons(lis[i]);
+}
 
 // Move up & remove button
 // on the variable containing the ul add an event listener
@@ -38,10 +59,18 @@ listUL.addEventListener('click', (event) => {
         ul.insertBefore(li, prevLi)
       }
     }
+    if (event.target.className = 'down') {
+      // get parent of nested button
+      let li = event.target.parentNode;
+      let nextLi = li.nextElementSibling;
+      let ul = li.parentNode;
+      if (nextLi) {
+        // bc there is no .insertAfter put the li sibling BEFORE the li when we move down
+        ul.insertBefore(nextLi, li)
+      }
+    }
   }
-})
-
-
+});
 
 // toggleList button
 // to the toggleList button add the following event
@@ -60,21 +89,15 @@ descriptionButton.addEventListener('click', () => {
   descriptionInput.value = '';
 })
 
+
+// Add items button
 addItemButton.addEventListener('click', () => {
   //store element you want to append to in variable so we can access later
   let ul = document.getElementsByTagName('ul')[0];
   let li = document.createElement('li');
   li.textContent = addItemInput.value;
+  attachListItemButtons(li);
   ul.appendChild(li);
   addItemInput.value = '';
 })
 
-// removeItemButton.addEventListener('click', () => {
-//   //store element you want to append to in variable so we can access later
-//   let ul = document.getElementsByTagName('ul')[0];
-//   // selects the last li
-//   let li = document.querySelector('li:last-child');
-//   // selects the last li
-//   ul.removeChild(li);
-
-// })                               
