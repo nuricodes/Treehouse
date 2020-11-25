@@ -5,9 +5,19 @@ const btn = document.querySelector('button');
 
 function getProfiles(json) {
     const profiles = json.people.map(person => {
-        //since we're using fetch we need to parse the return data to JSON
+        //pull data from first api and save to this variable
+        const craft = person.craft;
         return fetch(wikiUrl + person.name)
+            //since we're using fetch we need to parse the return data to JSON
             .then(response => response.json())
+            //to combine the data returned from two apis
+            .then(profile => {
+                //function that takes the profile data in JSON via the parameter called profile 
+                //using the spread operator to copy all the properties from the profile object
+                return { ...profile, craft }
+            })
+            //catch should be as high up as possible so we know exactly where errors are happening 
+            .catch(err => console.log('Err fetching Wiki:', err))
     });
     //takes the array of promise object and excepts the array stored in profiles then waits until all the promises are fulfilled before storing them in an array
     return Promise.all(profiles);
@@ -18,6 +28,7 @@ function generateHTML(data) {
         const section = document.createElement('section');
         peopleList.appendChild(section);
         section.innerHTML = `
+        <span>${person.craft}</span>
       <h2>${person.title}</h2>
       <p>${person.description}</p>
       <p>${person.extract}</p>
