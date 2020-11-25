@@ -27,6 +27,18 @@ function getJSON(url, callback) {
   xhr.send();
 }
 
+function getProfiles(json) {
+  // console.log(json) //test 
+  //iterate with map over json.people
+  //takes the parameter person to map over each person in the persons array
+  json.people.map(person => {
+    //concatanate the wiki url endpoint and perons name to form new url with each iteration
+    //once the function returns the requested data is generated we will also reference a cb function but not call it so we can execute it later
+    getJSON(wikiUrl + person.name, generateHTML);
+  });
+
+}
+
 // Generate the markup for each profile
 function generateHTML(data) {
   const section = document.createElement('section');
@@ -40,15 +52,6 @@ function generateHTML(data) {
 }
 
 btn.addEventListener('click', (event) => {
-  getJSON(astrosUrl, (json) => {
-    // console.log(json) //test 
-    //iterate with map over json.people
-    //takes the parameter person to map over each person in the persons array
-    json.people.map(person => {
-      //concatanate the wiki url endpoint and perons name to form new url with each iteration
-      //once the function returns the requested data is generated we will also reference a cb function but not call it so we can execute it later
-      getJSON(wikiUrl + person.name, generateHTML);
-    });
-  });
+  getJSON(astrosUrl, getProfiles);
   event.target.remove();
 })
