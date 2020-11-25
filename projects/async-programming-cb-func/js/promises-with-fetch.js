@@ -5,7 +5,9 @@ const btn = document.querySelector('button');
 
 function getProfiles(json) {
     const profiles = json.people.map(person => {
-        return getJSON(wikiUrl + person.name);
+        //since we're using fetch we need to parse the return data to JSON
+        return fetch(wikiUrl + person.name)
+            .then(response => response.json())
     });
     //takes the array of promise object and excepts the array stored in profiles then waits until all the promises are fulfilled before storing them in an array
     return Promise.all(profiles);
@@ -25,7 +27,13 @@ function generateHTML(data) {
 
 btn.addEventListener('click', (event) => {
     event.target.textContent = 'Loading';
+    //returns a promise and once fetch makes the request and the data finishes loading
+    // the fetch promise is fulfilled and returns a response object containing information about the response like the code
     fetch(astrosUrl)
+        //in order to access and use data we need to parse it to JSON first
+        //pass it a function that accepts the response via a parameter
+        .then(response => response.json())
+        //once resolved gets passed on to getprofiles
         .then(getProfiles)
         .then(generateHTML)
         .catch(err => {
