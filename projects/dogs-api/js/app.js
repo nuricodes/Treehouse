@@ -5,7 +5,9 @@ const form = document.querySelector('form');
 // ------------------------------------------
 //  FETCH FUNCTIONS
 // ------------------------------------------
-
+fetch('https://dog.ceo/api/breeds/list')
+  .then(response => response.json())
+  .then(data => generateOptions(data.message))
 
 fetch('https://dog.ceo/api/breeds/image/random')
   //in order to use the returned data we need to parse
@@ -16,6 +18,17 @@ fetch('https://dog.ceo/api/breeds/image/random')
 // ------------------------------------------
 //  HELPER FUNCTIONS
 // ------------------------------------------
+
+function fetchData(url) {
+  return fetch(url)
+}
+
+function generateOptions(data) {
+  const options = data.map(item => `
+    <option value='${item}'>${item}</option>
+  `).join(' ')
+  select.innerHTML = options;
+}
 
 function generateImage(data) {
   const html = `
