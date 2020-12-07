@@ -27,3 +27,18 @@ console.log(only2)
 //return only even numbers
 const onlyEven = numbers.filter(n => n % 2 === 0)
 console.log(onlyEven)
+
+//return the number of #s that start with 503 in the string
+const phoneNumbers = ["(503) 123-4567", "(646) 123-4567", "(503) 987-6543", "(503) 234-5678", "(212) 123-4567", "(416) 123-4567"];
+let numberOf503;
+
+phoneNumbers.reduce((numberOf503, curr) => curr.includes('503') ? numberOf503 + 1 : numberOf503, 0)
+
+//display years over 2000 and add a.d.
+const years = [1989, 2015, 2000, 1999, 2013, 1973, 2012];
+let displayYears;
+
+// displayYears should be: ["2015 A.D.", "2013 A.D.", "2012 A.D."]
+// Write your code below
+
+years.filter(y => y > 2000).map(y => `${y} A.D.`)
