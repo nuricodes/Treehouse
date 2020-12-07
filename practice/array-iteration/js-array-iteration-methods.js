@@ -153,3 +153,84 @@ products.filter(p => p.price < 10.00).reduce((highest, product) => highest.price
 
 //return a total of all products over 10
 products.filter(p => p.price > 10.00).reduce((sum, product) => sum + product.price, 0).toFixed(2); //to show 2 decimal places only
+
+/////////////////////////////////////////////////
+const purchaseItems = [
+    {
+        name: 'apples',
+        dept: 'groceries',
+        price: 2.49
+    },
+    {
+        name: 'bread',
+        dept: 'groceries',
+        price: 2.99
+    },
+    {
+        name: 'batteries',
+        dept: 'electronics',
+        price: 5.80
+    },
+    {
+        name: 'eggs',
+        dept: 'groceries',
+        price: 3.99
+    },
+    {
+        name: 't-shirts',
+        dept: 'apparel',
+        price: 9.99
+    }
+];
+let groceryTotal;
+
+//return the total of the product w the dept groceries
+// groceryTotal should be: 9.47
+// Write your code below
+groceryTotal = purchaseItems.filter(n => n.dept === 'groceries').reduce((sum, product) => sum + product.price, 0)
+
+
+//////////////////////////////////////
+const movies = [
+    ['The Day the Earth Stood Still', 'Superman', 'Ghostbusters'],
+    ['Finding Dory'],
+    ['Jaws', 'On the Waterfront']
+]
+
+//to make one large array of movie strings or flatter
+movies.reduce((arr, curr) => [...arr, ...curr])
+
+// Result: ['The Day the Earth Stood Still', 'Superman', 'Ghostbusters', 'Finding Dory', 'Jaws', 'On the Waterfront']
+
+//////////////////////////////////////\const users = [
+{
+    name: 'Samir',
+        age: 27,
+            favoriteBooks: [
+                { title: 'The Iliad' },
+                { title: 'The Brothers Karamazov' }
+            ]
+},
+{
+    name: 'Angela',
+        age: 33,
+            favoriteBooks: [
+                { title: 'Tenth of December' },
+                { title: 'Cloud Atlas' },
+                { title: 'One Hundred Years of Solitude' }
+            ]
+},
+{
+    name: 'Beatrice',
+        age: 42,
+            favoriteBooks: [
+                { title: 'Candide' }
+            ]
+}
+];
+
+// Result: ['The Iliad', 'The Brothers Karamazov', 'Tenth of December', 'Cloud Atlas', 'One Hundred Years of Solitude', 'Candide'];
+//map through fav books, then map through titles in the fave books, then reduce to flatten
+users.map(u => u.favoriteBooks.map(u => u.title)).reduce((arr, titles) => [...arr, ...titles], [])
+
+////////////////////////////////////////////
