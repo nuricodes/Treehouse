@@ -234,3 +234,45 @@ movies.reduce((arr, curr) => [...arr, ...curr])
 users.map(u => u.favoriteBooks.map(u => u.title)).reduce((arr, titles) => [...arr, ...titles], [])
 
 ////////////////////////////////////////////
+const customerNames = [
+    ["John", "Sandy", "Tyrone", "Elizabeth", "Penny"],
+    ["Barry", "Wanda", "Jamal", "Hayden"],
+    ["Portia", "Pam", "Philip"]
+];
+let flattenedCustomerNames;
+
+// flattenedCustomerNames should be: ["John", "Sandy", "Tyrone", "Elizabeth", "Penny", "Barry", "Wanda", "Jamal", "Hayden", "Portia", "Pam", "Philip"]
+// Write your code below
+
+flattenedCustomerNames = customerNames.reduce((arr, curr) => [...arr, ...curr])
+
+//////////////////////////////////////////////
+const customers = [
+    {
+        name: "Tyrone",
+        personal: {
+            age: 33,
+            hobbies: ["Bicycling", "Camping"]
+        }
+    },
+    {
+        name: "Elizabeth",
+        personal: {
+            age: 25,
+            hobbies: ["Guitar", "Reading", "Gardening"]
+        }
+    },
+    {
+        name: "Penny",
+        personal: {
+            age: 36,
+            hobbies: ["Comics", "Chess", "Legos"]
+        }
+    }
+];
+let hobbies;
+
+// hobbies should be: ["Bicycling", "Camping", "Guitar", "Reading", "Gardening", "Comics", "Chess", "Legos"]
+// Write your code below
+
+hobbies = customers.map(a => a.personal.hobbies).reduce((arr, curr) => [...arr, ...curr])
